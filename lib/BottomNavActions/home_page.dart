@@ -16,6 +16,7 @@ import 'package:sampleapp/Data/database_helper.dart';
 import 'package:share/share.dart';
 import 'package:sampleapp/Classes/detail_img.dart';
 import 'package:sampleapp/Classes/comments.dart';
+import 'package:sampleapp/AppBarActions/message.dart';
 
 class HomePage extends StatefulWidget {
   HomePageState createState() => HomePageState();
@@ -256,7 +257,12 @@ class HomePageState extends State<HomePage> {
             Padding(
               padding : EdgeInsets.only(right : 20.0),
               child : GestureDetector(
-                onTap : () {},
+                onTap : () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder : (context) => Messages()),
+                  );
+                },
                 child: Icon(
                   Icons.message_outlined,
                 ),
