@@ -23,7 +23,8 @@ class DisplayMessage extends StatelessWidget {
             msg.username,
             style: TextStyle(
               fontSize: 12.0,
-              color: Colors.black54,
+              color: Colors.white,
+              fontFamily : 'Ubuntu',
             ),
           ),
           Material(
