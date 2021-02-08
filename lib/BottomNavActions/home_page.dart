@@ -17,6 +17,7 @@ import 'package:share/share.dart';
 import 'package:sampleapp/Classes/detail_img.dart';
 import 'package:sampleapp/Classes/comments.dart';
 import 'package:sampleapp/AppBarActions/message.dart';
+import 'package:sampleapp/Classes/leaderboard.dart';
 
 class HomePage extends StatefulWidget {
   HomePageState createState() => HomePageState();
@@ -29,6 +30,7 @@ class HomePageState extends State<HomePage> {
   bool display_top_images = false;
   List<ImgClass> images = [];
   final dbHelper = DatabaseHelper.instance;
+  bool topButtons = false;
 
   void getData() async {
     await for(var snapshot in _firestore.collection('all_images').snapshots()) {
@@ -38,7 +40,7 @@ class HomePageState extends State<HomePage> {
           comments.add(img.data['comments'][i]);
         }
         ImgClass img_class = ImgClass(img.data['title'],img.data['user'],img.data['uid'],img.data['imageUrl'],img.data['likes'], img.data['path'], comments);
-        images.add(img_class);
+        images.insert(0,img_class);
       }
     }
   }
@@ -140,7 +142,6 @@ class HomePageState extends State<HomePage> {
             ],
           ),
         ),
-
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -227,7 +228,7 @@ class HomePageState extends State<HomePage> {
             icon: Icon(Icons.api_rounded),
             onPressed : () {
               setState(() {
-                display_top_images = !display_top_images;
+                topButtons = !topButtons;
               });
             }
           ),
@@ -302,9 +303,36 @@ class HomePageState extends State<HomePage> {
           ],
         ),
         body : Container(
-          margin : EdgeInsets.only(top:5.0),
+          margin : EdgeInsets.only(top:6.0),
           child : Column(
             children : <Widget> [
+              (topButtons == true) ? Row(
+                mainAxisAlignment : MainAxisAlignment.spaceEvenly,
+                children : <Widget> [
+                  FlatButton(
+                    onPressed : () {
+                      setState(() {
+                        display_top_images = !display_top_images;
+                      });
+                    },
+                    child : Text('Top Images'),
+                    color : (display_top_images == true) ? Colors.greenAccent : Colors.grey[300],
+                  ),
+                  FlatButton(
+                      onPressed : () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder : (context) => Leaderboard()),
+                        );
+                      },
+                      child : Text('Leaderboard'),
+                      color : Colors.grey[300],
+                  ),
+                  SizedBox(
+                    height : 15,
+                  ),
+                ],
+              ) : Container(),
               (display_top_images == true) ? carousel_builder() : Container(),
               (display_top_images == true) ? SizedBox(height : 10.0,) : Container(),
               Expanded(
