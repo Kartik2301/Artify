@@ -1,6 +1,6 @@
 # Artify
 
-<img src="https://raw.githubusercontent.com/Kartik2301/data/master/img1.jpg" width="500">
+<img src="https://raw.githubusercontent.com/Kartik2301/data/master/img1.jpg" width="300">
 
 
 ![Image 2](https://raw.githubusercontent.com/Kartik2301/data/master/img2.jpg)
