@@ -174,44 +174,46 @@ initState() {
                   }
                 ),
               ),
-              Container(
-                child : Align(
-                  alignment: FractionalOffset.bottomCenter,
-                  child : Row(
-                    children : <Widget> [
-                      Container(
-                        width : MediaQuery.of(context).size.width * 0.8,
-                        padding : EdgeInsets.all(16.0),
-                        child : TextField(
-                          onChanged : (value) {
-                            setState(() {
-                              content = value;
-                            });
-                          },
-                          decoration : InputDecoration(
-                            hintText : 'Add Comment',
+              Expanded(
+                child : Container(
+                  child : Align(
+                    alignment: FractionalOffset.bottomCenter,
+                    child : Row(
+                      children : <Widget> [
+                        Container(
+                          width : MediaQuery.of(context).size.width * 0.8,
+                          padding : EdgeInsets.all(16.0),
+                          child : TextField(
+                            onChanged : (value) {
+                              setState(() {
+                                content = value;
+                              });
+                            },
+                            decoration : InputDecoration(
+                              hintText : 'Add Comment',
+                            ),
+                            controller : comment_controller,
                           ),
-                          controller : comment_controller,
                         ),
-                      ),
-                      InkWell(
-                        onTap : () {
-                          if(content.length > 0) {
-                            add_comment();
-                            FocusScope.of(context).unfocus();
-                            comment_controller.clear();
-                          }
-                        },
-                        child : Container(
-                          child : Text(
-                            'POST',
-                            style : TextStyle(
-                              color : (content.length > 0) ? Colors.blue[900] : Colors.cyan[200],
+                        InkWell(
+                          onTap : () {
+                            if(content.length > 0) {
+                              add_comment();
+                              FocusScope.of(context).unfocus();
+                              comment_controller.clear();
+                            }
+                          },
+                          child : Container(
+                            child : Text(
+                              'POST',
+                              style : TextStyle(
+                                color : (content.length > 0) ? Colors.blue[900] : Colors.cyan[200],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -309,7 +309,7 @@ class HomePageState extends State<HomePage> {
               (topButtons == true) ? Row(
                 mainAxisAlignment : MainAxisAlignment.spaceEvenly,
                 children : <Widget> [
-                  FlatButton(
+                  RaisedButton(
                     onPressed : () {
                       setState(() {
                         display_top_images = !display_top_images;
@@ -318,7 +318,7 @@ class HomePageState extends State<HomePage> {
                     child : Text('Top Images'),
                     color : (display_top_images == true) ? Colors.greenAccent : Colors.grey[300],
                   ),
-                  FlatButton(
+                  RaisedButton(
                       onPressed : () {
                         Navigator.push(
                           context,
